@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scrapps</title>
+  </head>
+  <style>
+    img{
+      width:200px;
+      height: 200px
+    }
+  </style>
+  <body>
+    <h1>What ingredients do you have?</h1>
+    <form method = "POST">
+      <!--yo yo-->
+      <div class="form__fieldset">
+        <label for="Ingredients" class="form__label">Ingredients: </label>
+        <input type="strings" name="Ingredients" id="Ingredients" class="form__input" />
+      </div>
+
+      <div class="form__fieldset">
+        <label for="mealType" class="form__label">Meal: </label>
+        <select name="mealType" id="mealType" class="form__input form__select">
+          <option value="Selection">Enter a meal type</option> 
+          <option value="Breakfast">Breakfast</option>
+          <option value="Lunch">Lunch</option>
+          <option value="Dinner">Dinner</option>
+          <option value="Dessert">Dessert</option>
+          <option value="SnacksAndApps">Snacks and Appitizers</option>
+          <option value="Any">Any</option>
+        </select>
+      </div>
+      <div class="form__fieldset">
+        <input
+          class="form__submit form__input"
+          type="submit"
+          value="Submit"
+        />
+      </div>
+    </form>
+    <table>
+      <thead>
+        <tr>
+          <th>URL</th>
+          <th>Title</th>
+          <th>Image</th>
+          <th>Ingredients</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in output_data %}
+          <tr>
+            <td><a href={{item[0]}} target="_blank" rel="noopener noreferrer">Link To Recipe</a></td>
+            <td>{{item[1]}}</td>
+            <td><img src={{item[2]}} alt = "image"></td>
+            <td>
+              {% for ingredient in item[3:] %} 
+                {{ingredient}},
+              {% endfor %}
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </body>
+</html>
